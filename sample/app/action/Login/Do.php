@@ -112,6 +112,10 @@ class Sample_Action_LoginDo extends Sample_ActionClass
     {
         if ($this->af->validate() > 0) {
                 return 'login';
+        $um = $this->backend->getManager('user');
+        // 認証処理
+        $result = $um->auth($this->af->get('mailaddress'), $this->af->get('password'));
+        // 以降結果によってビューを変更、等...
         }
     }
 }
